@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lancer de dés</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="moi.css">
+    <h4><big style="color: white;">soldef->>> 5000057.67 <small style="color: green;">FRC</small></big></h4>
+    <p id="solde">
+    
+    <style>
+        .dice {
+            font-size: 100px;
+            margin: 20px;
+            display: inline-block;
+            border-radius: 20px;
+            background-color: rgb(254, 255, 255);
+            animation: roll 4s;
+        }
+        #result {
+            font-size: 24px;
+        }
+        .red {
+            color: red;
+        }
+        .blue {
+            color: blue;
+        }
+        .green {
+            color: rgb(0, 255, 0);
+        }
+        @keyframes roll {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(720deg);
+    }
+  }
+    </style>
+</head>
+<body>
+  <fieldset>
+    <h1>GIRADIN DICE</h1>
+    <div>
+        <i id="dice1" class="bx bx-dice-1 dice"></i>
+        <i id="dice2" class="bx bx-dice-1 dice"></i>
+    </div>
+    <button onclick="lancerDes()"><big>LANCER</big></button>
+    <p id="result"></p>
+  </fieldset>
+<div class="para">
+  <p class="pip">Developper par <a href="tel:+237658923374">GIRADIN TCHINDA</a>tous droit reservé.</p>
+  <p class="pip">à jouer a deux ou plus dans le but de s'amuser ou miser de l'argent</p>
+  <a href="tel:+237658923374">mon <span style="color: rgb(255, 123, 0);">ORANGE MONY</span></a>
+  <p class="pip">nous ne somme pas responsable des bagarres <br> et d'autres choses malveillantes pour cela,<br> nous vous inviton a lire les <a href="c:\Users\GIRADIN code\Desktop\moi\condition.html">conditions d'utilisation</a></p>
+  
+</div>
+<fieldset>
+  
+  <form id="emailForm"> 
+     <h2 style="color: white;">evoyer un mail?? </h2>
+    
+    <div class="form-group">
+      
+      <label for="name">Nom :</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="phone">email</label>
+      <input type="email" id="phone" name="phone" required>
+    </div>
+    <div class="form-group">
+      <label for="message">Message :</label>
+      <textarea id="message" name="message" required></textarea>
+    </div>
+    <button type="submit" class="pop">Envoyer</button>
+  </form>
+</fieldset>
+
+
+
+
+
+
+
+  <script>
+    document.getElementById('emailForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const name = document.getElementById('name').value;
+  const phone = document.getElementById('phone').value;
+  const message = document.getElementById('message').value;
+
+  if (message.length > 300) {
+    alert('Le message ne doit pas dépasser 300 caractères.');
+    return;
+  }
+
+  // Envoi de l'email (manipulation du message et envoi par email n'est pas pris en charge par le navigateur)
+  alert('Email envoyé à giradintchinda@gmail.com : \n\n' + 'Nom: ' + name + '\nTéléphone: ' + phone + '\nMessage: ' + message);
+});
+  </script>
+
+
+
+
+
+    <script>
+        function lancerDes() {
+            var dice1 = document.getElementById('dice1');
+            var dice2 = document.getElementById('dice2');
+            var result = document.getElementById('result');
+
+            var timeout = 3000; // 3 secondes
+            var startTime = new Date().getTime();
+            var interval = setInterval(function() {
+                var currentTime = new Date().getTime();
+                if (currentTime - startTime >= timeout) {
+                   clearInterval(interval);
+                    var result1 = Math.floor(Math.random() * 6) + 1;
+                    var result2 = Math.floor(Math.random() * 6) + 1;
+                    dice1.className = "bx bx-dice-" + result1 + " dice";
+                    setTimeout(function() {
+                        dice2.className = "bx bx-dice-" + result2 + " dice";
+                        var total = result1 + result2;
+                        result.textContent = "toltal : " + total;
+
+                        if (total < 7) {
+                            result.className = "red";
+                       } else if (total >= 8 && total <= 10) {
+                            result.className = "blue";
+                        } else if (total >= 11 && total <= 12) {
+                           result.className = "green";
+                        } if (total ==2 ){
+                          result.className = "green";
+                        }
+                    }, 800);
+                } else {
+                    var result1 = Math.floor(Math.random() * 6) + 1;
+                    var result2 = Math.floor(Math.random() * 6) + 1;
+                    dice1.className = "bx bx-dice-" + result1 + " dice";
+                    dice2.className = "bx bx-dice-" + result2 + " dice";
+                }
+            }, 100);
+        }
+    </script>
+  <div class="cote">
+    <h2 style="color: white;"> placez la  MISE</h2>
+    <input type="number" id="misons"><br><br>
+    <h2 class="blos">cote: 2,8</h2>
+    <button onclick="plusde7()" class="bloss">pus de 7</button><br><br>
+    <h2 class="blos">cote: 5</h2>
+    <button onclick="exact7()"class="bloss">exact 7</button><br><br>
+    <h2 class="blos">cote: 2,8</h2>
+    <button onclick="moinde7()"class="bloss">moin de 7</button>
+    <h2 class="blos">cote: 1,8</h2>
+    <button onclick="couleurvert()" class="bloss"> nombre vert</button>
+    <h2 class="blos">cote: 2</h2>
+    <button onclick="couleurvert()" class="bloss"> nombre rouge</button>
+    <h2 class="blos">cote: 1,8</h2>
+    <button onclick="couleurvert()" class="bloss"> nombre bleu</button>
+  </div>
+  <script>
+    var resultat = document.getElementById('result');
+    var mise = document.getElementById('misons');
+    
+    function plusde7()
+    {
+      if(mise < 500){
+      alert('la mise minimale est 500 frc')
+    }
+      else {
+        alert ('vous avez placer votre mise');  
+      }
+    }
+  </script>
+    
+</body>
+</html>
